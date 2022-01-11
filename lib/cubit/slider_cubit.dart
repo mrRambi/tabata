@@ -7,4 +7,5 @@ class SliderCubit extends Cubit<SliderState> {
   SliderCubit() : super(SliderValue(1));
 
   void setValue(num value) => emit(SliderValue(value));
+  SliderCubit getValue() => this;
 }
