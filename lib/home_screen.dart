@@ -2,7 +2,6 @@ import 'package:aplikacja_treningowa/cubit/slider_cubit.dart';
 import 'package:aplikacja_treningowa/training_progress.dart';
 import 'package:flutter/material.dart';
 import 'simple_app_bar.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,33 +10,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appBar = SimpleAppBar();
+    const appBar = SimpleAppBar();
     return Material(
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            appBar,
-            MaterialButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) => SliderCubit(),
-                      child: TrainingProgress(),
-                    ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          appBar,
+          MaterialButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                    create: (context) => SliderCubit(),
+                    child: const TrainingProgress(),
                   ),
-                );
-              },
-              color: Colors.purple,
-              child: Text(
-                'Spalanie brzucha',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
+                ),
+              );
+            },
+            color: Colors.purple,
+            child: const Text(
+              'Spalanie brzucha',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
       ),
     );
   }

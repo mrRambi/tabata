@@ -1,6 +1,4 @@
-import 'package:aplikacja_treningowa/training_progress.dart';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 
 class SimpleAppBar extends StatefulWidget {
   const SimpleAppBar({Key? key}) : super(key: key);
@@ -12,20 +10,18 @@ class SimpleAppBar extends StatefulWidget {
 class _SimpleAppBarState extends State<SimpleAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: AppBar(
-        title: Text('TABATA TRENER'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.question_answer),
-            onPressed: () {
-              _showMyDialog();
-            },
-          )
-        ],
-        backgroundColor: Colors.lightBlueAccent,
-      ),
+    return AppBar(
+      title: const Text('TABATA TRENER'),
+      centerTitle: true,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.question_answer),
+          onPressed: () {
+            _showMyDialog();
+          },
+        )
+      ],
+      backgroundColor: Colors.lightBlueAccent,
     );
   }
 
