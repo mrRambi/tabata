@@ -1,8 +1,14 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocOverrides.runZoned(
+    () {
+      return MyApp();
+    },
+    blocObserver: SimpleBlocObserver(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +22,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const HomeScreen(title: 'Tabata trener'),
+      home: HomeScreen(title: 'Tabata trener'),
     );
+  }
+}
+
+class SimpleBlocObserver extends BlocObserver {
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    print('${bloc.runtimeType} $change');
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print('${bloc.runtimeType} $transition');
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print('${bloc.runtimeType} $error $stackTrace');
+    super.onError(bloc, error, stackTrace);
   }
 }

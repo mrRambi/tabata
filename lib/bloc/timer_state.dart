@@ -33,3 +33,10 @@ class TimerRunInProgress extends TimerState {
 class TimerRunComplete extends TimerState {
   const TimerRunComplete() : super(0);
 }
+
+class TimerRestInitial extends TimerState {
+  const TimerRestInitial(int duration) : super(20);
+
+  @override
+  String toString() => 'TimerRestInitial {duration: $duration }';
+}

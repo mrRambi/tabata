@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => BlocProvider(
                     create: (context) => SliderCubit(),
-                    child: const TrainingProgress(),
+                    child: TrainingProgress(),
                   ),
                 ),
               );

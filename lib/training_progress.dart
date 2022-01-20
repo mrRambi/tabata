@@ -1,7 +1,9 @@
 import 'package:aplikacja_treningowa/bloc/timer_bloc.dart';
+import 'package:aplikacja_treningowa/cubit/training_cubit.dart';
 import 'package:aplikacja_treningowa/training_spec.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/timer_bloc.dart';
 import 'cubit/slider_cubit.dart';
 import 'ticker.dart';
 
@@ -14,6 +16,7 @@ class TrainingProgress extends StatefulWidget {
 
 class _TrainingProgressState extends State<TrainingProgress> {
   // num value = 1;
+
   @override
   Widget build(BuildContext context) {
     final value = BlocProvider.of<SliderCubit>(context).state as SliderValue;
@@ -36,15 +39,22 @@ class _TrainingProgressState extends State<TrainingProgress> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BlocProvider(
-                  create: (context) => TimerBloc(ticker: const Ticker()),
+                builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (_) => TimerBloc(ticker: Ticker()),
+                    ),
+                    BlocProvider(
+                      create: (context) => TrainingCubit(),
+                    ),
+                  ],
                   child: TrainingSpec(value: value.value as double),
                 ),
               ),
             );
           },
           color: Colors.purple,
-          child: const Text(
+          child: Text(
             'Trzecia strona',
             style: TextStyle(color: Colors.white),
           ),
